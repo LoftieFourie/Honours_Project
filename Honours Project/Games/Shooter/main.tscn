@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://iek75ankac51"]
+
+[ext_resource type="PackedScene" uid="uid://bi4grw61dw42r" path="res://player.tscn" id="1_35ic0"]
+[ext_resource type="PackedScene" uid="uid://b8gn562xtym2r" path="res://barrier.tscn" id="2_28v0n"]
+
+[node name="Main" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.584314, 0.478431, 0.247059, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_35ic0")]
+position = Vector2(248, 689)
+rotation = 4.71239
+
+[node name="barrier" parent="." instance=ExtResource("2_28v0n")]
+position = Vector2(249, 659)

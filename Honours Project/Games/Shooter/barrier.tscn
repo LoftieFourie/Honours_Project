@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8gn562xtym2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06vei"]
+size = Vector2(51.8483, 50.9746)
+
+[node name="barrier" type="Line2D"]
+rotation = 0.863317
+points = PackedVector2Array(0, 50, 0, 0, 50, 0, 0, 0, 0, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(24.832, 24.5184)
+shape = SubResource("RectangleShape2D_06vei")

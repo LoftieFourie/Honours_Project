@@ -26,6 +26,9 @@ func _process(delta):
 			_on_start_button_pressed()
 			$StartButton.hide()
 			game_over = false
+			
+	if Input.is_action_pressed("exit"):
+		get_tree().quit()
 		
 	
 func update_score(score):
