@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://iek75ankac51"]
+[gd_scene load_steps=6 format=3 uid="uid://iek75ankac51"]
 
 [ext_resource type="PackedScene" uid="uid://bi4grw61dw42r" path="res://player.tscn" id="1_35ic0"]
+[ext_resource type="Script" path="res://main.gd" id="1_x6uja"]
 [ext_resource type="PackedScene" uid="uid://b8gn562xtym2r" path="res://barrier.tscn" id="2_28v0n"]
+[ext_resource type="PackedScene" uid="uid://qfa65i85a16j" path="res://zombie.tscn" id="2_75hdt"]
+
+[sub_resource type="Curve2D" id="Curve2D_j8kkc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0)
+}
+point_count = 2
 
 [node name="Main" type="Node"]
+script = ExtResource("1_x6uja")
+mob_scene = ExtResource("2_75hdt")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -19,3 +29,18 @@ rotation = 4.71239
 
 [node name="barrier" parent="." instance=ExtResource("2_28v0n")]
 position = Vector2(249, 659)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ZombiePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_j8kkc")
+
+[node name="SpawnLocation" type="PathFollow2D" parent="ZombiePath"]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
