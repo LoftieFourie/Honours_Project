@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7hjyg1pbmuoa"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_e6565"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyaia"]
+size = Vector2(2, 3)
+
+[node name="Bullet" type="RigidBody2D"]
+position = Vector2(35, 18)
+mass = 0.01
+gravity_scale = 0.0
+can_sleep = false
+script = ExtResource("1_e6565")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 3, 0, 0)
+width = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_iyaia")
