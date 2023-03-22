@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8gn562xtym2r"]
+[gd_scene load_steps=4 format=3 uid="uid://b8gn562xtym2r"]
+
+[ext_resource type="Script" path="res://barrier.gd" id="1_btb7f"]
+[ext_resource type="Script" path="res://Area2D.gd" id="2_y5uwc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06vei"]
 size = Vector2(51.8483, 50.9746)
@@ -8,9 +11,16 @@ rotation = 0.863317
 points = PackedVector2Array(0, 50, 0, 0, 50, 0, 0, 0, 0, 0)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_btb7f")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_y5uwc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(24.832, 24.5184)
 shape = SubResource("RectangleShape2D_06vei")
+
+[connection signal="area_entered" from="Area2D" to="." method="_dead"]
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

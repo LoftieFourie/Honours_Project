@@ -2,7 +2,8 @@ extends Area2D
 
 var bullet = preload("res://bullet.tscn")
 
-@export var speed = 400
+@export var speed = 200
+
 
 var target = position
 var velocity = Vector2.ZERO
@@ -31,3 +32,5 @@ func shooting():
 		bulletinstance.position = Vector2(position)
 		
 		
+func _on_area_entered(area):
+	print("hit")
