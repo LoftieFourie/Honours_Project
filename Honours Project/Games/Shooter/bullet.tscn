@@ -7,7 +7,7 @@ size = Vector2(2, 3)
 
 [node name="Bullet" type="RigidBody2D"]
 position = Vector2(35, 18)
-mass = 0.01
+mass = 2.0
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_e6565")
