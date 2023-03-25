@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://b68sr7av2rrka"]
+
+[ext_resource type="Script" path="res://Intro.gd" id="1_dh76d"]
+
+[node name="Intro" type="Node"]
+script = ExtResource("1_dh76d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label1" type="Label" parent="."]
+offset_left = 144.0
+offset_top = 98.0
+offset_right = 184.0
+offset_bottom = 124.0
+text = "1"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 205.0
+offset_top = 98.0
+offset_right = 245.0
+offset_bottom = 124.0
+text = "2"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 261.0
+offset_top = 99.0
+offset_right = 301.0
+offset_bottom = 125.0
+text = "3"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 147.0
+offset_top = 144.0
+offset_right = 187.0
+offset_bottom = 170.0
+text = "4"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 206.0
+offset_top = 142.0
+offset_right = 246.0
+offset_bottom = 168.0
+text = "5"
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 260.0
+offset_top = 138.0
+offset_right = 300.0
+offset_bottom = 164.0
+text = "6"
