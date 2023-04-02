@@ -59,3 +59,6 @@ func _process(delta):
 			$Label6.add_theme_color_override("font_color","GREEN")
 		else:
 			$Label6.add_theme_color_override("font_color","RED")
+			
+	if Input.is_action_just_pressed("addMusic"):
+		get_tree().change_scene_to_file("res://upload_music.tscn")
