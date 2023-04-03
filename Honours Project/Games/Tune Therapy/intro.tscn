@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b68sr7av2rrka"]
+[gd_scene load_steps=5 format=3 uid="uid://b68sr7av2rrka"]
 
 [ext_resource type="Script" path="res://Intro.gd" id="1_dh76d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8m82a"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sotgb"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_il16c"]
+font_color = Color(0.117647, 0.87451, 0, 1)
 
 [node name="Intro" type="Node"]
 script = ExtResource("1_dh76d")
@@ -12,44 +21,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label1" type="Label" parent="."]
-offset_left = 144.0
-offset_top = 98.0
-offset_right = 184.0
-offset_bottom = 124.0
+[node name="BoxContainer" type="BoxContainer" parent="."]
+clip_contents = true
+offset_left = 44.0
+offset_top = 72.0
+offset_right = 244.0
+offset_bottom = 313.0
+alignment = 1
+vertical = true
+
+[node name="Label1" type="Label" parent="BoxContainer"]
+layout_mode = 2
 text = "1"
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 205.0
-offset_top = 98.0
-offset_right = 245.0
-offset_bottom = 124.0
+[node name="Label2" type="Label" parent="BoxContainer"]
+layout_mode = 2
 text = "2"
 
-[node name="Label3" type="Label" parent="."]
-offset_left = 261.0
-offset_top = 99.0
-offset_right = 301.0
-offset_bottom = 125.0
+[node name="Label3" type="Label" parent="BoxContainer"]
+layout_mode = 2
 text = "3"
 
-[node name="Label4" type="Label" parent="."]
-offset_left = 147.0
-offset_top = 144.0
-offset_right = 187.0
-offset_bottom = 170.0
+[node name="Label4" type="Label" parent="BoxContainer"]
+layout_mode = 2
 text = "4"
 
-[node name="Label5" type="Label" parent="."]
-offset_left = 206.0
-offset_top = 142.0
-offset_right = 246.0
-offset_bottom = 168.0
+[node name="Label5" type="Label" parent="BoxContainer"]
+layout_mode = 2
 text = "5"
 
-[node name="Label6" type="Label" parent="."]
-offset_left = 260.0
-offset_top = 138.0
-offset_right = 300.0
-offset_bottom = 164.0
+[node name="Label6" type="Label" parent="BoxContainer"]
+layout_mode = 2
 text = "6"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 38.0
+offset_top = 14.0
+offset_right = 399.0
+offset_bottom = 37.0
+text = "press esc to add new music"
+label_settings = SubResource("LabelSettings_8m82a")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 319.0
+offset_top = 168.0
+offset_right = 652.0
+offset_bottom = 246.0
+text = "Who will be playeing along?
+Just press your button, if your
+number turns green then you are set to go!"
+label_settings = SubResource("LabelSettings_sotgb")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 324.0
+offset_top = 271.0
+offset_right = 658.0
+offset_bottom = 297.0
+text = "press the green button when you are ready"
+label_settings = SubResource("LabelSettings_il16c")

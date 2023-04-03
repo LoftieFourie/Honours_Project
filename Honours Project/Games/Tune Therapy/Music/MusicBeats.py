@@ -19,5 +19,5 @@ for n in songs:
     upload = open ("..\MusicList.txt", "a")
     upload.write(n+"\n")
     
-#done = open("MusicUploads.txt","w")
-#done.write("")
+done = open("MusicUploads.txt","w")
+done.write("")
