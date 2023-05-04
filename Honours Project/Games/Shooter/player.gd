@@ -24,7 +24,7 @@ func shooting():
 	var spawnlocation : Vector2 = position.direction_to(get_global_mouse_position())
 	var spawn_distance : int = 10
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		print(spawnlocation)
 		target = get_global_mouse_position()
 		get_tree().get_root().add_child(bulletinstance)
