@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfoslnhve76vs"]
+
+[ext_resource type="FontFile" uid="uid://bdve15mj3ghww" path="res://fonts/Xolonium-Regular.ttf" id="1_fudo1"]
+[ext_resource type="Script" path="res://hud.gd" id="1_ulj1w"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ulj1w")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = 18.0
+offset_right = 49.0
+offset_bottom = 99.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_fudo1")
+theme_override_font_sizes/font_size = 64
+text = "10"
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.165
+anchor_right = 0.5
+anchor_bottom = 0.165
+offset_left = -175.0
+offset_top = 100.2
+offset_right = 196.0
+offset_bottom = 181.2
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_fudo1")
+theme_override_font_sizes/font_size = 64
+text = "Game Over"
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -262.0
+offset_right = 98.0
+offset_bottom = -176.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_fudo1")
+theme_override_font_sizes/font_size = 64
+text = "Start
+"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
