@@ -1,12 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmoxux1duowko"]
+[gd_scene load_steps=5 format=3 uid="uid://cmoxux1duowko"]
 
 [ext_resource type="Script" path="res://main_game.gd" id="1_5axm8"]
+[ext_resource type="PackedScene" uid="uid://c5johjcivhbhp" path="res://bar.tscn" id="2_cbv8u"]
+
+[sub_resource type="Curve2D" id="Curve2D_ejyt5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 450, -2, 0, 0, 0, 0, 712, 0)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmniq"]
 size = Vector2(269, 48)
 
 [node name="main_game" type="Node"]
 script = ExtResource("1_5axm8")
+bar_scene = ExtResource("2_cbv8u")
+
+[node name="barPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ejyt5")
+
+[node name="barPathFollow" type="PathFollow2D" parent="barPath"]
+position = Vector2(450, -2)
+rotates = false
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -36,3 +53,8 @@ visible = false
 position = Vector2(581, 604)
 shape = SubResource("RectangleShape2D_pmniq")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]

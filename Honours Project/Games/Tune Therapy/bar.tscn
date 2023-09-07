@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5johjcivhbhp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6di61"]
+size = Vector2(258.5, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_djktg"]
+
+[node name="Bar" type="RigidBody2D"]
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+modulate = Color(0.368627, 0.388235, 0.917647, 1)
+self_modulate = Color(0.317647, 0.415686, 1, 1)
+position = Vector2(132.5, 11)
+scale = Vector2(13.15, 1.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(130.75, 11)
+shape = SubResource("RectangleShape2D_6di61")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.611765, 0.0235294, 0.294118, 1)
+position = Vector2(134.484, 10.0113)
+scale = Vector2(-267.968, 21.0226)
+texture = SubResource("CanvasTexture_djktg")
