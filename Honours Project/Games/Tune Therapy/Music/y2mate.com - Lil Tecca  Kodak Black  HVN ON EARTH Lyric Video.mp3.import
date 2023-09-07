@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://x0atgchssquh"
+path="res://.godot/imported/y2mate.com - Lil Tecca  Kodak Black  HVN ON EARTH Lyric Video.mp3-709efc6dda52c4dc25f28da62599d5f6.mp3str"
+
+[deps]
+
+source_file="res://Music/y2mate.com - Lil Tecca  Kodak Black  HVN ON EARTH Lyric Video.mp3"
+dest_files=["res://.godot/imported/y2mate.com - Lil Tecca  Kodak Black  HVN ON EARTH Lyric Video.mp3-709efc6dda52c4dc25f28da62599d5f6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

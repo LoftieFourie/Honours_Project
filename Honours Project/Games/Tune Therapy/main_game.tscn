@@ -55,6 +55,6 @@ shape = SubResource("RectangleShape2D_pmniq")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="spawnTimer" type="Timer" parent="."]
-wait_time = 2.0
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]

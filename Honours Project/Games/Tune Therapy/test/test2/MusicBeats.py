@@ -18,9 +18,9 @@ for n in songs:
     
     print('Estimated tempo: {:.2f} beats per minute'.format(tempo))
     beat_times = librosa.frames_to_time(beat_frames, sr=sr)
-    CreateFile = open("..\..\Music\{}.csv".format(n),"x",newline='\n')
+    CreateFile = open("..\..\Music\{}.txt".format(n),"x",newline='\n')
     for i in beat_times:
-        beats = open("..\..\Music\{}.csv".format(n),"a")
+        beats = open("..\..\Music\{}.txt".format(n),"a")
         writer = csv.writer(beats, delimiter='\n')
         value = [str(i)]
         writer.writerow(value)
