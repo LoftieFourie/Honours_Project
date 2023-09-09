@@ -20,6 +20,14 @@ offset_bottom = 70.0
 text = "Add new music"
 
 [node name="FileDialog" type="FileDialog" parent="Button"]
+title = "Open a File"
 position = Vector2i(200, 100)
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 0
+access = 2
 
 [connection signal="pressed" from="Button" to="." method="addMusic"]
+[connection signal="dir_selected" from="Button/FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="file_selected" from="Button/FileDialog" to="." method="_on_file_dialog_file_selected"]

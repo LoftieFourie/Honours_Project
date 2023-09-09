@@ -12,6 +12,7 @@ var audio_player = null
 var song = []
 var timeElapsed = 0
 var noteCount = 0
+var spawned_blocks := []
 
 func _ready():
 	#$spawnTimer.start()
@@ -24,6 +25,12 @@ func _ready():
 	
 	
 func _song(count):
+	for block_instance in spawned_blocks:
+		if block_instance != null:
+			block_instance.queue_free()
+	
+	spawned_blocks.clear()
+	
 	timeElapsed = 0
 	noteCount = 0
 	if audio_player != null:
@@ -55,6 +62,7 @@ func _song(count):
 	# Play the audio
 	audio_player.play()
 	
+
 
 func spawnBlock():
 	var prevTime = 0
@@ -127,10 +135,11 @@ func _on_spawn_timer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(bar)
+	spawned_blocks.append(bar)
 	
 	spawnBlock()
 
 func _on_area_2d_body_entered(body):
-	print("entered")
-	if Input.is_action_just_pressed("1"):
-		body.queue_free()
+	pass
+#	if Input.is_action_just_pressed("1"):
+#		body.queue_free()
