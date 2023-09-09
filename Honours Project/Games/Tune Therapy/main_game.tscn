@@ -33,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+clip_contents = true
 offset_left = 447.0
 offset_top = 1.0
 offset_right = 718.0

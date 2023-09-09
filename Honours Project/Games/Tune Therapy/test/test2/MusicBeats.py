@@ -1,31 +1,57 @@
 import librosa
+import numpy as np
 import csv
+from scipy.signal import find_peaks
 
+# Define a function to find the timestamps of the loudest drum beats
+def find_loudest_drum_timestamps(y, sr, drum_frequency_range):
+    # Calculate the percussive component using Harmonic-Percussive Source Separation
+    _, percussive = librosa.effects.hpss(y)
+    
+    # Compute the STFT (Short-Time Fourier Transform) of the percussive signal
+    stft = librosa.stft(percussive, n_fft=2048, hop_length=256)
+    
+    # Define the frequency bins corresponding to the STFT
+    freq_bins = librosa.fft_frequencies(sr=sr, n_fft=2048)
+    
+    # Find the indices of the frequency bins within the drum frequency range
+    drum_bins_idx = np.where((freq_bins >= drum_frequency_range[0]) & (freq_bins <= drum_frequency_range[1]))[0]
+    
+    # Calculate RMS energy for the selected drum frequency bins
+    rms_energy_drum = np.sqrt(np.mean(np.abs(stft[drum_bins_idx, :]) ** 2, axis=0))
+    
+    # Find peaks in the RMS energy within the drum frequency range
+    peaks, _ = find_peaks(rms_energy_drum, height=np.max(rms_energy_drum) * 0.5)
+    
+    # Convert peak indices to timestamps
+    loudest_drum_timestamps = (peaks * 256) / sr
+    
+    return loudest_drum_timestamps
 
-with open("..\..\Music\MusicUploads.txt","r") as f:
+# Load the list of songs
+with open("..\..\Music\MusicUploads.txt", "r") as f:
     songs = f.read().splitlines()
     songs = [song.rstrip() for song in songs]
+
+# Define the drum frequency range here
+clap_frequency_range = [2000, 6000]  # Adjust as needed
 
 for n in songs:
     m = "..\..\Music\{}".format(n)
     y, sr = librosa.load(m)
-    tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr) 
-    #audio_segments = librosa.effects.split(y, beat_frames)
-    #onset_envs = [librosa.onset.onset_strength(y=y, sr=sr) for y in audio_segments]
-    #onsets = [librosa.onset.onset_detect(onset_envelope=o, sr=sr) for o in onset_envs]
-    #audio_frames = [librosa.util.frame(y=y, frame_length=2048, hop_length=512) for y in audio_segments]
-    #spectral_contrasts = [librosa.feature.spectral_contrast(S=librosa.stft(y), sr=sr) for y in audio_frames] 
     
-    print('Estimated tempo: {:.2f} beats per minute'.format(tempo))
-    beat_times = librosa.frames_to_time(beat_frames, sr=sr)
-    CreateFile = open("..\..\Music\{}.txt".format(n),"x",newline='\n')
-    for i in beat_times:
-        beats = open("..\..\Music\{}.txt".format(n),"a")
-        writer = csv.writer(beats, delimiter='\n')
-        value = [str(i)]
-        writer.writerow(value)
-    upload = open ("..\..\MusicList.txt", "a")
-    upload.write(n+"\n")
+    # Find the timestamps of the loudest drum beats
+    loudest_drum_timestamps = find_loudest_drum_timestamps(y, sr, clap_frequency_range)
     
-done = open("..\..\Music\MusicUploads.txt","w")
-done.write("")
+    # Create a text file to save the timestamps
+    with open("..\..\Music\{}.txt".format(n), "w") as beats:
+        for timestamp in loudest_drum_timestamps:
+            beats.write("{}\n".format(timestamp))
+    
+    # Append the song name to MusicList.txt as before
+    with open("..\..\MusicList.txt", "a") as upload:
+        upload.write(n + "\n")
+
+# Clear the contents of MusicUploads.txt as before
+with open("..\..\Music\MusicUploads.txt", "w") as done:
+    done.write("")

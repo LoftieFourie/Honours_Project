@@ -51,7 +51,7 @@ func _song(count):
 	
 	spawnBlock()
 	
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(2).timeout
 	# Play the audio
 	audio_player.play()
 	
