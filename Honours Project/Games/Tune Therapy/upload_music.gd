@@ -38,9 +38,19 @@ func _on_file_dialog_file_selected(path):
 		var read_bytes = file.get_buffer(buffer_size)
 		newfile.store_buffer(read_bytes)
 	newfile.close()
-#	if file.copy(path, destination_path) == OK:
-#		print("File copied successfully.")
-#	else:
-#		print("Failed to copy the file.")
 	file.close()
+	
+	var uploads_file_path = "res://Music/MusicUploads.txt"
+	var uploads_file = FileAccess.file_exists(uploads_file_path)
+	print(uploads_file)
+	# Open the file in append mode to add the new file name
+	if uploads_file == true:
+		print(uploads_file)
+		uploads_file = FileAccess.open(uploads_file_path, FileAccess.READ_WRITE)
+	else:
+		uploads_file = FileAccess.open(uploads_file_path, FileAccess.WRITE)
+	
+	uploads_file.seek_end()
+	uploads_file.store_string(filename + "\n")
+	uploads_file.close()
 
