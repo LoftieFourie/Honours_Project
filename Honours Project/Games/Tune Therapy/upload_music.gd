@@ -1,6 +1,15 @@
 extends Node
 
 
+var songContainer
+
+func _ready():
+	# Assign the label node to the variable
+	songContainer = $Label/songContainer
+
+	print("running")
+	loadAndDisplaySongNames()
+	
 func addMusic():
 	$Button/FileDialog.current_dir = "/Users/Public"
 	
@@ -54,3 +63,73 @@ func _on_file_dialog_file_selected(path):
 	uploads_file.store_string(filename + "\n")
 	uploads_file.close()
 
+func loadAndDisplaySongNames():
+	var uploads_file_path = "res://MusicList.txt"
+	var uploads_file = FileAccess.open(uploads_file_path, FileAccess.READ)
+	
+	if uploads_file:
+		
+
+		var songList = uploads_file.get_as_text().strip_edges()
+		uploads_file.close()
+		
+		if songList:
+		# Split the song list into individual song names
+			var songs = songList.split("\n")
+			# Iterate through the songs and create labels and remove buttons
+			for song_name in songs:
+				
+				if song_name.strip_edges(true, true) != "":
+					# Create a VBoxContainer to hold each label and button pair
+					var vbox = $Label/songContainer
+
+					# Create a label for the song
+					var songLabel = Label.new()
+					songLabel.text = song_name
+					
+					#var songContainer = HBoxContainer.new()
+					# Create a remove button for the song
+					var removeButton = Button.new()
+					removeButton.text = "Remove"
+					removeButton.connect("pressed", Callable(self, "_on_remove_button_pressed").bind(song_name))
+
+					# Add the label and button to the VBoxContainer
+					songContainer.add_child(songLabel)
+					songContainer.add_child(removeButton)
+
+		else:
+			var songLabel = Label.new()
+			songLabel.text = "There are currently no songs in the playlist"
+			songContainer.add_child(songLabel)
+	else:
+		print("Failed to open 'MusicList.txt'")
+
+
+func _on_remove_button_pressed(song_name):
+	var uploads_file_path = "res://MusicList.txt"
+	var uploads_file = FileAccess.open(uploads_file_path, FileAccess.READ)
+	
+	if uploads_file:
+		var songList = uploads_file.get_as_text().strip_edges()
+		uploads_file.close()
+		
+		# Split the song list into individual song names
+		var songs = songList.split("\n")
+		
+		# Remove the selected song from the list
+		var updatedSongs = []
+		for song in songs:
+			if song.strip_edges(true, true) != "" and song.strip_edges(true,true) != song_name:
+				updatedSongs.append(song)
+		
+		# Save the updated song list back to the file
+		uploads_file = FileAccess.open(uploads_file_path, FileAccess.WRITE)
+		uploads_file.store_string("\n".join(updatedSongs) + "\n")
+		uploads_file.close()
+		
+	else:
+		print("Failed to open 'MusicList.txt'")
+	for child in songContainer.get_children():
+		child.queue_free()
+	_ready()
+		
