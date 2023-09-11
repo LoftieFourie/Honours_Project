@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmoxux1duowko"]
+[gd_scene load_steps=10 format=3 uid="uid://cmoxux1duowko"]
 
 [ext_resource type="Script" path="res://main_game.gd" id="1_5axm8"]
 [ext_resource type="PackedScene" uid="uid://c5johjcivhbhp" path="res://bar.tscn" id="2_cbv8u"]
+[ext_resource type="PackedScene" uid="uid://gsphgqww8yes" path="res://HUD.tscn" id="3_vqj68"]
 
 [sub_resource type="Curve2D" id="Curve2D_ejyt5"]
 _data = {
@@ -106,6 +107,8 @@ label_settings = SubResource("LabelSettings_ie435")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="MotivationalTimer1" type="Timer" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("3_vqj68")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]

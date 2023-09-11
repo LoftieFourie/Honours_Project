@@ -20,14 +20,20 @@ var MotBarCount = 0
 var Mot1 = null
 var Mot1Done = null
 var Mot2 = null
-var Mot2Count = 0
 var Mot2Done = null
 var Mot3 = null
-var Mot3Count = 0
 var Mot3Done = null
+var Player1Count = 0
+var Player2Count = 0
+var Player3Count = 0
+var Player4Count = 0
+var DoubletapCount = 0
 
 func _ready():
 	#$spawnTimer.start()
+	var data_received = GameData.players
+	print("Received data: ", data_received)
+	
 	var file = FileAccess.open("res://MusicList.txt",FileAccess.READ)
 	
 	while !file.eof_reached():
@@ -38,11 +44,16 @@ func _ready():
 	CurSong = $Label/CurSong
 	NexSong = $Label2/NexSong
 	var countCheck = spaceCount + 2
-	
+
 	
 	
 func _song(count):
 	$MotivationalTimer1.stop()
+	Player1Count = 0
+	Player2Count = 0
+	Player3Count = 0
+	Player4Count = 0
+	
 	for block_instance in spawned_blocks:
 		if block_instance != null:
 			block_instance.queue_free()
@@ -80,7 +91,7 @@ func _song(count):
 	audio_player.play()
 	
 	# Lower the volume 5 seconds into the song
-	$MotivationalTimer1.wait_time = 10
+	$MotivationalTimer1.wait_time = 15
 	$MotivationalTimer1.start()
 	
 	# Return the volume to full after 10 seconds
@@ -119,7 +130,14 @@ func _process(delta):
 		get_tree().change_scene_to_file("res://intro.tscn")
 		
 	if Input.is_action_just_pressed("space"):
+		$HUD.hide()
 		$spawnTimer.stop()
+		DoubletapCount = DoubletapCount + 1
+		if DoubletapCount == 2:
+			get_tree().change_scene_to_file("res://intro.tscn")
+		await get_tree().create_timer(0.5).timeout
+		DoubletapCount = 0
+		
 		_song(spaceCount)
 		var countCheck = spaceCount + 2
 		if startSong != null:
@@ -139,18 +157,46 @@ func _process(delta):
 			NexSong.text = songnames[spaceCount]
 			
 
-		
-	if Input.is_action_just_pressed("1"):
-		var area_2d = $Area2D  # Replace with the actual name of your Area2D node
-		if area_2d != null:
-			var body = area_2d.get_overlapping_bodies()
-			if body.size() > 0:
-				body[0].queue_free()
+	if GameData.players.has(1):
+		if Input.is_action_just_pressed("1"):
+			var area_2d = $Area2D  # Replace with the actual name of your Area2D node
+			if area_2d != null:
+				var body = area_2d.get_overlapping_bodies()
+				if body.size() > 0:
+					body[0].queue_free()
+					Player1Count = Player1Count + 1
+					
+	if GameData.players.has(2):
+		if Input.is_action_just_pressed("2"):
+			var area_2d = $Area2D  # Replace with the actual name of your Area2D node
+			if area_2d != null:
+				var body = area_2d.get_overlapping_bodies()
+				if body.size() > 0:
+					body[0].queue_free()
+					Player2Count = Player2Count + 1
+					
+	if GameData.players.has(3):
+		if Input.is_action_just_pressed("3"):
+			var area_2d = $Area2D  # Replace with the actual name of your Area2D node
+			if area_2d != null:
+				var body = area_2d.get_overlapping_bodies()
+				if body.size() > 0:
+					body[0].queue_free()
+					Player3Count = Player3Count + 1
+					
+	if GameData.players.has(4):
+		if Input.is_action_just_pressed("4"):
+			var area_2d = $Area2D  # Replace with the actual name of your Area2D node
+			if area_2d != null:
+				var body = area_2d.get_overlapping_bodies()
+				if body.size() > 0:
+					body[0].queue_free()
+					Player4Count = Player4Count + 1
 
 
 
 func _on_spawn_timer_timeout():
-	MotBarCount = MotBarCount + 1
+	
 	var bar = bar_scene.instantiate()
 
 	# Choose a random location on Path2D.
@@ -178,13 +224,13 @@ func _on_spawn_timer_timeout():
 	spawnBlock()
 
 func _on_area_2d_body_entered(body):
-	pass
-#	if Input.is_action_just_pressed("1"):
-#		body.queue_free()
+	MotBarCount = MotBarCount + 1
+
 
 
 func _on_motivational_timer_1_timeout():
-	print("motivational")
+	print(MotBarCount)
+	print(Player1Count)
 	audio_player.volume_db = -10
 	
 	await get_tree().create_timer(5.0).timeout

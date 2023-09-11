@@ -46,14 +46,6 @@ text = "3"
 layout_mode = 2
 text = "4"
 
-[node name="Label5" type="Label" parent="BoxContainer"]
-layout_mode = 2
-text = "5"
-
-[node name="Label6" type="Label" parent="BoxContainer"]
-layout_mode = 2
-text = "6"
-
 [node name="Label" type="Label" parent="."]
 offset_left = 38.0
 offset_top = 14.0
