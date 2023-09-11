@@ -127,6 +127,19 @@ func _on_remove_button_pressed(song_name):
 		uploads_file.store_string("\n".join(updatedSongs) + "\n")
 		uploads_file.close()
 		
+		# Now, you can delete the file from the file system
+		var music_folder = "res://Music/"
+		var song_to_delete_path = music_folder + song_name
+		var txtFileToDel = song_to_delete_path + ".txt"
+		
+		DirAccess.remove_absolute(song_to_delete_path)
+		DirAccess.remove_absolute(txtFileToDel)
+#		if file:
+#			file = FileAccess.open(song_to_delete_path, FileAccess.WRITE)
+#			file.close()
+#			if file.remove(song_to_delete_path) != OK:
+#				print("Failed to remove the file: " + song_to_delete_path)
+		
 	else:
 		print("Failed to open 'MusicList.txt'")
 	for child in songContainer.get_children():
