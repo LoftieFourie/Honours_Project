@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c1ryukf72yodq"
+
+[deps]
+
+files=["res://dist/MusicBeats/sklearn/datasets/data/iris.4.translation", "res://dist/MusicBeats/sklearn/datasets/data/iris.setosa.translation", "res://dist/MusicBeats/sklearn/datasets/data/iris.versicolor.translation", "res://dist/MusicBeats/sklearn/datasets/data/iris.virginica.translation"]
+
+source_file="res://dist/MusicBeats/sklearn/datasets/data/iris.csv"
+dest_files=["res://dist/MusicBeats/sklearn/datasets/data/iris.4.translation", "res://dist/MusicBeats/sklearn/datasets/data/iris.setosa.translation", "res://dist/MusicBeats/sklearn/datasets/data/iris.versicolor.translation", "res://dist/MusicBeats/sklearn/datasets/data/iris.virginica.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ksu562nx6k3"
+
+[deps]
+
+files=["res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices.13.translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation"]
+
+source_file="res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices.csv"
+dest_files=["res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices.13.translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation", "res://dist/MusicBeats/sklearn/datasets/data/boston_house_prices..translation"]
+
+[params]
+
+compress=true
+delimiter=0

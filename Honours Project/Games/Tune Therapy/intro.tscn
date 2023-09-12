@@ -1,7 +1,96 @@
-[gd_scene load_steps=8 format=3 uid="uid://b68sr7av2rrka"]
+[gd_scene load_steps=21 format=3 uid="uid://b68sr7av2rrka"]
 
 [ext_resource type="Script" path="res://Intro.gd" id="1_dh76d"]
+[ext_resource type="Script" path="res://Label1.gd" id="2_ht3xe"]
 [ext_resource type="Script" path="res://HBoxContainer.gd" id="2_ntwk6"]
+[ext_resource type="Script" path="res://Label2.gd" id="3_m6log"]
+[ext_resource type="Script" path="res://Label3.gd" id="4_uxode"]
+[ext_resource type="Script" path="res://Label4.gd" id="5_ui31c"]
+[ext_resource type="PackedScene" uid="uid://osne576drmo4" path="res://character.tscn" id="6_8hlv8"]
+
+[sub_resource type="Animation" id="Animation_lqqb1"]
+resource_name = "playerSelect"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xucrj"]
+_data = {
+"playerSelect": SubResource("Animation_lqqb1")
+}
+
+[sub_resource type="Animation" id="Animation_l0v2r"]
+resource_name = "playerSelect"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wfvky"]
+_data = {
+"playerSelect": SubResource("Animation_l0v2r")
+}
+
+[sub_resource type="Animation" id="Animation_1qfp2"]
+resource_name = "playerSelect"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nqgc"]
+_data = {
+"playerSelect": SubResource("Animation_1qfp2")
+}
+
+[sub_resource type="Animation" id="Animation_1bdyc"]
+resource_name = "playerSelect"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mua3r"]
+_data = {
+"playerSelect": SubResource("Animation_1bdyc")
+}
 
 [sub_resource type="Animation" id="Animation_1t5nt"]
 resource_name = "selected"
@@ -31,7 +120,8 @@ font_color = Color(0, 0, 0, 1)
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_il16c"]
-font_color = Color(0.117647, 0.87451, 0, 1)
+font_size = 19
+font_color = Color(0.0823529, 0.678431, 0, 1)
 
 [node name="Intro" type="Node"]
 script = ExtResource("1_dh76d")
@@ -42,58 +132,99 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.843137, 0.862745, 0.85098, 1)
+
+[node name="Label1" type="Label" parent="."]
+offset_left = 256.0
+offset_top = 184.0
+offset_right = 270.0
+offset_bottom = 210.0
+text = "1"
+script = ExtResource("2_ht3xe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label1"]
+libraries = {
+"": SubResource("AnimationLibrary_xucrj")
+}
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 384.0
+offset_top = 184.0
+offset_right = 394.0
+offset_bottom = 210.0
+text = "2"
+script = ExtResource("3_m6log")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
+libraries = {
+"": SubResource("AnimationLibrary_wfvky")
+}
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 512.0
+offset_top = 184.0
+offset_right = 522.0
+offset_bottom = 210.0
+text = "3"
+script = ExtResource("4_uxode")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label3"]
+libraries = {
+"": SubResource("AnimationLibrary_2nqgc")
+}
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 680.0
+offset_top = 184.0
+offset_right = 690.0
+offset_bottom = 210.0
+text = "4"
+script = ExtResource("5_ui31c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label4"]
+libraries = {
+"": SubResource("AnimationLibrary_mua3r")
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 236.0
-offset_top = 83.0
-offset_right = 849.0
-offset_bottom = 123.0
+offset_left = 261.0
+offset_top = 410.0
+offset_right = 874.0
+offset_bottom = 450.0
 theme_override_constants/separation = 150
 script = ExtResource("2_ntwk6")
-
-[node name="Label1" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-text = "1"
-
-[node name="Label2" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-text = "2"
-
-[node name="Label3" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-text = "3"
-
-[node name="Label4" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-text = "4"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer"]
 libraries = {
 "": SubResource("AnimationLibrary_udyio")
 }
 
-[node name="Label" type="Label" parent="."]
-offset_left = 38.0
-offset_top = 14.0
-offset_right = 399.0
+[node name="routeUpload" type="Label" parent="."]
+offset_left = 22.0
+offset_top = 11.0
+offset_right = 383.0
 offset_bottom = 37.0
 text = "press esc to add new music"
 label_settings = SubResource("LabelSettings_8m82a")
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 319.0
-offset_top = 168.0
-offset_right = 652.0
-offset_bottom = 246.0
+[node name="Instuctions" type="Label" parent="."]
+offset_left = 508.0
+offset_top = 322.0
+offset_right = 841.0
+offset_bottom = 400.0
 text = "Who will be playeing along?
 Just press your button, if your
 number turns green then you are set to go!"
 label_settings = SubResource("LabelSettings_sotgb")
+horizontal_alignment = 2
 
-[node name="Label3" type="Label" parent="."]
-offset_left = 324.0
-offset_top = 271.0
-offset_right = 658.0
-offset_bottom = 297.0
+[node name="Start" type="Label" parent="."]
+offset_left = 279.0
+offset_top = 103.0
+offset_right = 676.0
+offset_bottom = 133.0
 text = "press the green button when you are ready"
 label_settings = SubResource("LabelSettings_il16c")
+
+[node name="Character" parent="." instance=ExtResource("6_8hlv8")]
+position = Vector2(960, 400)

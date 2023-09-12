@@ -1,6 +1,7 @@
 extends Node
 
-var players = [] # This will store the player data
+var players = []
+var scene
 
 func _ready():
 	pass

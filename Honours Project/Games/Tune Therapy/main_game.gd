@@ -30,10 +30,8 @@ var Player4Count = 0
 var DoubletapCount = 0
 
 func _ready():
-	#$spawnTimer.start()
-	var data_received = GameData.players
-	print("Received data: ", data_received)
-	
+	GameData.scene = "main_game"
+	$Character.hide()
 	var file = FileAccess.open("res://MusicList.txt",FileAccess.READ)
 	
 	while !file.eof_reached():
@@ -90,8 +88,8 @@ func _song(count):
 	# Play the audio
 	audio_player.play()
 	
-	# Lower the volume 5 seconds into the song
-	$MotivationalTimer1.wait_time = 15
+	
+	$MotivationalTimer1.wait_time = 5
 	$MotivationalTimer1.start()
 	
 	# Return the volume to full after 10 seconds
@@ -136,6 +134,8 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("space"):
 		$HUD.hide()
+		if $Character.hidden:
+			$Character.show()
 		$spawnTimer.stop()
 		DoubletapCount = DoubletapCount + 1
 		if DoubletapCount == 2:
@@ -234,10 +234,25 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_motivational_timer_1_timeout():
+	var songpath = "res://Music/"
+
+	var audio_stream = load(songpath)  
+	
+
+	audio_player = AudioStreamPlayer.new()
+	audio_player.stream = audio_stream
+	
+	add_child(audio_player)
+	$Character/mtoivational1.wait_time = 5
+	$Character/mtoivational1.start()
 	print(MotBarCount)
 	print(Player1Count)
 	audio_player.volume_db = -10
-	
-	await get_tree().create_timer(5.0).timeout
-	audio_player.volume_db = 0  # Restore the volume to normal (0 dB)
 	$MotivationalTimer1.stop()
+
+
+
+func _on_character_timer_timed_out():
+	print("done")
+	audio_player.volume_db = 0  # Restore the volume to normal (0 dB)
+	

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c7cghu8cg43ag"
+
+[deps]
+
+files=["res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Open.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.High.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Low.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Close.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Volume.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Adj. Close*.translation"]
+
+source_file="res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.csv"
+dest_files=["res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Open.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.High.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Low.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Close.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Volume.translation", "res://dist/MusicBeats/matplotlib/mpl-data/sample_data/msft.Adj. Close*.translation"]
+
+[params]
+
+compress=true
+delimiter=0
