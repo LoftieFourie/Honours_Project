@@ -6,29 +6,33 @@ var player3 = false
 var player4 = false
 
 func _ready():
+	$HBoxContainer/Label1.add_theme_font_size_override("font_size", 30)
+	$HBoxContainer/Label2.add_theme_font_size_override("font_size", 30)
+	$HBoxContainer/Label3.add_theme_font_size_override("font_size", 30)
+	$HBoxContainer/Label4.add_theme_font_size_override("font_size", 30)
 	if GameData.players.has(1):
 		player1 = true
-		$BoxContainer/Label1.add_theme_color_override("font_color","GREEN")
+		$HBoxContainer/Label1.add_theme_color_override("font_color","GREEN")
 	else:
-		$BoxContainer/Label1.add_theme_color_override("font_color","RED")
+		$HBoxContainer/Label1.add_theme_color_override("font_color","RED")
 		
 	if GameData.players.has(2):
 		player2 = true
-		$BoxContainer/Label2.add_theme_color_override("font_color","GREEN")
+		$HBoxContainer/Label2.add_theme_color_override("font_color","GREEN")
 	else:
-		$BoxContainer/Label2.add_theme_color_override("font_color","RED")
+		$HBoxContainer/Label2.add_theme_color_override("font_color","RED")
 		
 	if GameData.players.has(3):
 		player3 = true
-		$BoxContainer/Label3.add_theme_color_override("font_color","GREEN")
+		$HBoxContainer/Label3.add_theme_color_override("font_color","GREEN")
 	else:
-		$BoxContainer/Label3.add_theme_color_override("font_color","RED")
+		$HBoxContainer/Label3.add_theme_color_override("font_color","RED")
 		
 	if GameData.players.has(4):
 		player4 = true
-		$BoxContainer/Label4.add_theme_color_override("font_color","GREEN")
+		$HBoxContainer/Label4.add_theme_color_override("font_color","GREEN")
 	else:
-		$BoxContainer/Label4.add_theme_color_override("font_color","RED")
+		$HBoxContainer/Label4.add_theme_color_override("font_color","RED")
 	
 	GameData.players.clear()
 	
@@ -38,30 +42,30 @@ func _process(delta):
 	if Input.is_action_just_pressed("1"):
 		player1 = !player1
 		if player1 == true:
-			$BoxContainer/Label1.add_theme_color_override("font_color","GREEN")
+			$HBoxContainer/Label1.add_theme_color_override("font_color","GREEN")
 		else:
-			$BoxContainer/Label1.add_theme_color_override("font_color","RED")
+			$HBoxContainer/Label1.add_theme_color_override("font_color","RED")
 	
 	if Input.is_action_just_pressed("2"):
 		player2 = !player2
 		if player2 == true:
-			$BoxContainer/Label2.add_theme_color_override("font_color","GREEN")
+			$HBoxContainer/Label2.add_theme_color_override("font_color","GREEN")
 		else:
-			$BoxContainer/Label2.add_theme_color_override("font_color","RED")
+			$HBoxContainer/Label2.add_theme_color_override("font_color","RED")
 		
 	if Input.is_action_just_pressed("3"):
 		player3 = !player3
 		if player3 == true:
-			$BoxContainer/Label3.add_theme_color_override("font_color","GREEN")
+			$HBoxContainer/Label3.add_theme_color_override("font_color","GREEN")
 		else:
-			$BoxContainer/Label3.add_theme_color_override("font_color","RED")
+			$HBoxContainer/Label3.add_theme_color_override("font_color","RED")
 	
 	if Input.is_action_just_pressed("4"):
 		player4 = !player4
 		if player4 == true:
-			$BoxContainer/Label4.add_theme_color_override("font_color","GREEN")
+			$HBoxContainer/Label4.add_theme_color_override("font_color","GREEN")
 		else:
-			$BoxContainer/Label4.add_theme_color_override("font_color","RED")
+			$HBoxContainer/Label4.add_theme_color_override("font_color","RED")
 	
 			
 	if Input.is_action_just_pressed("addMusic"):

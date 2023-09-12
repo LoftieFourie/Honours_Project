@@ -1,6 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://b68sr7av2rrka"]
+[gd_scene load_steps=8 format=3 uid="uid://b68sr7av2rrka"]
 
 [ext_resource type="Script" path="res://Intro.gd" id="1_dh76d"]
+[ext_resource type="Script" path="res://HBoxContainer.gd" id="2_ntwk6"]
+
+[sub_resource type="Animation" id="Animation_1t5nt"]
+resource_name = "selected"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udyio"]
+_data = {
+"selected": SubResource("Animation_1t5nt")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_8m82a"]
 font_color = Color(0, 0, 0, 1)
@@ -21,30 +43,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
-clip_contents = true
-offset_left = 44.0
-offset_top = 72.0
-offset_right = 244.0
-offset_bottom = 313.0
-alignment = 1
-vertical = true
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 236.0
+offset_top = 83.0
+offset_right = 849.0
+offset_bottom = 123.0
+theme_override_constants/separation = 150
+script = ExtResource("2_ntwk6")
 
-[node name="Label1" type="Label" parent="BoxContainer"]
+[node name="Label1" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "1"
 
-[node name="Label2" type="Label" parent="BoxContainer"]
+[node name="Label2" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "2"
 
-[node name="Label3" type="Label" parent="BoxContainer"]
+[node name="Label3" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "3"
 
-[node name="Label4" type="Label" parent="BoxContainer"]
+[node name="Label4" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "4"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_udyio")
+}
 
 [node name="Label" type="Label" parent="."]
 offset_left = 38.0

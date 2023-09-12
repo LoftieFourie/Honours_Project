@@ -86,7 +86,7 @@ func _song(count):
 	
 	spawnBlock()
 	
-	startSong = await get_tree().create_timer(1.5).timeout
+	startSong = await get_tree().create_timer(2.1).timeout
 	# Play the audio
 	audio_player.play()
 	
@@ -105,12 +105,16 @@ func spawnBlock():
 	var lastTime = int(song.size())
 	if timeElapsed >= float(song[lastTime-2]):
 		$spawnTimer.stop()
+		await get_tree().create_timer(3).timeout
 		_song(spaceCount)
 		var countCheck = spaceCount + 2
+		CurSong.text = songnames[spaceCount]
 		if countCheck == counter:
 			spaceCount = 0
+			NexSong.text = songnames[spaceCount]
 		else:
 			spaceCount = spaceCount + 1
+			NexSong.text = songnames[spaceCount]
 		pass
 		
 	spawnTime = get_node("spawnTimer")
@@ -118,7 +122,8 @@ func spawnBlock():
 	var nextBlock = float(song[0])
 	if timeElapsed > 0:
 		noteCount = noteCount + 1
-		nextBlock = float(song[noteCount]) - timeElapsed
+		if noteCount < song.size():
+			nextBlock = float(song[noteCount]) - timeElapsed
 		
 	timeElapsed = timeElapsed + nextBlock
 	$spawnTimer.wait_time = nextBlock

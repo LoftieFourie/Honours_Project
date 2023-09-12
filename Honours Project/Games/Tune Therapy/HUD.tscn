@@ -40,7 +40,6 @@ offset_left = 217.0
 offset_top = 110.0
 offset_right = 924.0
 offset_bottom = 260.0
-scale = Vector2(1.01835, 1.01835)
 text = "Press Space to Start and skip songs
 Press Space twice to go back"
 label_settings = SubResource("LabelSettings_yvai3")
