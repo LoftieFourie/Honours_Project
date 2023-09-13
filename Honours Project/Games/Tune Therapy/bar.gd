@@ -1,14 +1,15 @@
 extends RigidBody2D
 
-var speed = 100  # Adjust the falling speed as needed
-
-var target_position: Vector2
+var animation_player: AnimationPlayer
 
 func _ready():
-	pass
+	animation_player = $AnimationPlayer
 	
 func _process(delta):
 	pass
 
 
-
+func dequeue_item():
+	animation_player.play("pop")
+	await get_tree().create_timer(0.15).timeout
+	queue_free()

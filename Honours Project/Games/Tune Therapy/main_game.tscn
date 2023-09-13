@@ -115,7 +115,10 @@ label_settings = SubResource("LabelSettings_ie435")
 [node name="Character" parent="." instance=ExtResource("4_t4kjr")]
 position = Vector2(978, 465)
 
+[node name="MotivationalTimer2" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="MotivationalTimer1" to="." method="_on_motivational_timer_1_timeout"]
 [connection signal="timer_timed_out" from="Character" to="." method="_on_character_timer_timed_out"]
+[connection signal="timeout" from="MotivationalTimer2" to="." method="_on_motivational_timer_2_timeout"]

@@ -85,4 +85,5 @@ func _process(delta):
 		if player4:
 			GameData.players.append(4)
 		
+		GameData.players.append(5)
 		get_tree().change_scene_to_file("res://main_game.tscn")

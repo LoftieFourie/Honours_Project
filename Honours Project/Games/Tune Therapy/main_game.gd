@@ -28,6 +28,8 @@ var Player2Count = 0
 var Player3Count = 0
 var Player4Count = 0
 var DoubletapCount = 0
+var animation_player: AnimationPlayer
+var songTime = 0
 
 func _ready():
 	GameData.scene = "main_game"
@@ -74,6 +76,7 @@ func _song(count):
 	audio_player.stream = audio_stream
 	
 	add_child(audio_player)
+	songTime = audio_stream.get_length()
 
 	var path = songnames[count]
 	var timestamps = FileAccess.open("res://Music/" + path + ".txt",FileAccess.READ)
@@ -89,8 +92,11 @@ func _song(count):
 	audio_player.play()
 	
 	
-	$MotivationalTimer1.wait_time = 5
+	$MotivationalTimer1.wait_time = songTime * 0.10
+	$MotivationalTimer2.wait_time = songTime * 0.75
+	print(songTime * 0.25)
 	$MotivationalTimer1.start()
+	$MotivationalTimer2.start()
 	
 	# Return the volume to full after 10 seconds
 	
@@ -168,7 +174,10 @@ func _process(delta):
 			if area_2d != null:
 				var body = area_2d.get_overlapping_bodies()
 				if body.size() > 0:
-					body[0].queue_free()
+					body[0].collision_layer = 0
+					body[0].collision_mask = 0
+					body[0].linear_velocity = Vector2(0.0, 0.0)
+					body[0].dequeue_item()
 					Player1Count = Player1Count + 1
 					
 	if GameData.players.has(2):
@@ -177,7 +186,10 @@ func _process(delta):
 			if area_2d != null:
 				var body = area_2d.get_overlapping_bodies()
 				if body.size() > 0:
-					body[0].queue_free()
+					body[0].collision_layer = 0
+					body[0].collision_mask = 0
+					body[0].linear_velocity = Vector2(0.0, 0.0)
+					body[0].dequeue_item()
 					Player2Count = Player2Count + 1
 					
 	if GameData.players.has(3):
@@ -186,7 +198,10 @@ func _process(delta):
 			if area_2d != null:
 				var body = area_2d.get_overlapping_bodies()
 				if body.size() > 0:
-					body[0].queue_free()
+					body[0].collision_layer = 0
+					body[0].collision_mask = 0
+					body[0].linear_velocity = Vector2(0.0, 0.0)
+					body[0].dequeue_item()
 					Player3Count = Player3Count + 1
 					
 	if GameData.players.has(4):
@@ -195,7 +210,10 @@ func _process(delta):
 			if area_2d != null:
 				var body = area_2d.get_overlapping_bodies()
 				if body.size() > 0:
-					body[0].queue_free()
+					body[0].collision_layer = 0
+					body[0].collision_mask = 0
+					body[0].linear_velocity = Vector2(0.0, 0.0)
+					body[0].dequeue_item()
 					Player4Count = Player4Count + 1
 
 
@@ -234,19 +252,24 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_motivational_timer_1_timeout():
-	var songpath = "res://Music/"
+	var songpath = chooseMoti() + ".mp3"
+	print(songpath)
 
 	var audio_stream = load(songpath)  
-	
 
-	audio_player = AudioStreamPlayer.new()
-	audio_player.stream = audio_stream
-	
-	add_child(audio_player)
-	$Character/mtoivational1.wait_time = 5
+
+	var moticlip = AudioStreamPlayer.new()
+	moticlip.stream = audio_stream
+	var duration_seconds = audio_stream.get_length()
+	print(duration_seconds)
+	add_child(moticlip)
+	moticlip.volume_db = 5
+	moticlip.play()
+	$Character/mtoivational1.wait_time = duration_seconds + 0.2
 	$Character/mtoivational1.start()
 	print(MotBarCount)
 	print(Player1Count)
+	print(Player2Count)
 	audio_player.volume_db = -10
 	$MotivationalTimer1.stop()
 
@@ -254,5 +277,102 @@ func _on_motivational_timer_1_timeout():
 
 func _on_character_timer_timed_out():
 	print("done")
-	audio_player.volume_db = 0  # Restore the volume to normal (0 dB)
+	audio_player.volume_db = 0
 	
+
+
+func _on_motivational_timer_2_timeout():
+	var songpath = chooseMoti() + ".mp3"
+
+	var audio_stream = load(songpath)  
+
+
+	var moticlip = AudioStreamPlayer.new()
+	moticlip.stream = audio_stream
+	var duration_seconds = audio_stream.get_length()
+	print(duration_seconds)
+	add_child(moticlip)
+	moticlip.volume_db = 5
+	moticlip.play()
+	$Character/mtoivational1.wait_time = duration_seconds + 0.2
+	$Character/mtoivational1.start()
+	print(MotBarCount)
+	print(Player1Count)
+	print(Player2Count)
+	audio_player.volume_db = -10
+	$MotivationalTimer2.stop()
+
+func chooseMoti():
+	var path1
+	var path2
+	var finalDest
+	var entirePath
+	var amount = GameData.players
+	var randomIndex = randi() % amount.size()  # Get a random index within the array size
+	var randomValue = amount[randomIndex]
+	if randomValue == 1:
+		path2 = "1"
+		if Player1Count >= MotBarCount*0.75:
+			finalDest = randi() % 3 + 1
+			path1 = "1"
+		elif Player1Count >= MotBarCount*0.50:
+			finalDest = randi() % 2 + 1
+			path1 = "2"
+		else:
+			finalDest = randi() % 2 + 1
+			path1 = "3"
+		
+		entirePath = "motivation/"+str(path1)+"/"+str(path2)+"/"+str(finalDest)
+		
+		return entirePath
+	elif randomValue == 2:
+		path2 = "2"
+		if Player2Count >= MotBarCount*0.75:
+			finalDest = randi() % 3 + 1
+			path1 = "1"
+		elif Player2Count >=  MotBarCount*0.50:
+			finalDest = randi() % 2 + 1
+			path1 = "2"
+		else:
+			finalDest = randi() % 2 + 1
+			path1 = "3"
+		
+		entirePath = "motivation/"+str(path1)+"/"+str(path2)+"/"+str(finalDest)
+		
+		return entirePath
+	elif randomValue == 3:
+		path2 = "3"
+		if Player3Count >= MotBarCount*0.75:
+			finalDest = randi() % 3 + 1
+			path1 = "1"
+		elif Player3Count >= MotBarCount*0.50:
+			finalDest = randi() % 2 + 1
+			path1 = "2"
+		else:
+			finalDest = randi() % 2 + 1
+			path1 = "3"
+		
+		entirePath = "motivation/"+str(path1)+"/"+str(path2)+"/"+str(finalDest)
+		
+		return entirePath
+	elif randomValue == 4:
+		path2 = "4"
+		if Player3Count >= MotBarCount*0.75:
+			finalDest = randi() % 3 + 1
+			path1 = "1"
+		elif Player3Count >= 50:
+			finalDest = randi() % 2 + 1
+			path1 = "2"
+		else:
+			finalDest = randi() % 2 + 1
+			path1 = "3"
+		
+		entirePath = "motivation/"+str(path1)+"/"+str(path2)+"/"+str(finalDest)
+		
+		return entirePath
+	else:
+		path1 = "all"
+		finalDest = randi() % 3 + 1
+		
+		entirePath = "motivation/"+path1+"/"+str(finalDest)
+		return entirePath

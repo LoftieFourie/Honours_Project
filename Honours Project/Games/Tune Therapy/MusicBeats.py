@@ -37,7 +37,7 @@ def find_loudest_drum_timestamps(counter, y, sr, drum_frequency_range=None):
     rms_energy_drum = np.sqrt(np.mean(np.abs(stft[drum_bins_idx, :]) ** 2, axis=0))
 
     # Find peaks in the RMS energy within the drum frequency range
-    peaks, _ = find_peaks(rms_energy_drum, height=np.max(rms_energy_drum) * 0.2)
+    peaks, _ = find_peaks(rms_energy_drum, height=np.max(rms_energy_drum) * 0.5)
 
     # Convert peak indices to timestamps
     loudest_drum_timestamps = (peaks * 256) / sr
