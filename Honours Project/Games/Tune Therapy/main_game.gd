@@ -135,6 +135,17 @@ func spawnBlock():
 	
 
 func _process(delta):
+	GameData.connection.poll()
+	
+	var state = GameData.connection.get_status()
+	
+	if GameData.connection and state == GameData.connection.STATUS_CONNECTED:
+		if GameData.connection.get_available_bytes() > 0:
+			var s = GameData.connection.get_utf8_string(GameData.connection.get_available_bytes())
+			print(str(s))
+			if str(s) == "1":
+				Input.action_press("1")
+				
 	if Input.is_action_just_pressed("addMusic"):
 		get_tree().change_scene_to_file("res://intro.tscn")
 		
