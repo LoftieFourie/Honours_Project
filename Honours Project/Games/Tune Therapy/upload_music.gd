@@ -1,5 +1,4 @@
- extends Node
-
+extends Node
 
 var songContainer
 

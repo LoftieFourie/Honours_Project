@@ -49,6 +49,8 @@ func _process(delta):
 			print(str(s))
 			if str(s) == "1":
 				Input.action_press("1")
+			elif str(s) == " ":
+				Input.action_press("space")
 
 	if Input.is_action_just_pressed("1"):
 		player1 = !player1
