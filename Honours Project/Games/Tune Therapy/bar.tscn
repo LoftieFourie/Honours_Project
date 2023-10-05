@@ -86,7 +86,7 @@ position = Vector2(130.75, 11)
 shape = SubResource("RectangleShape2D_6di61")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.611765, 0.0235294, 0.294118, 1)
+modulate = Color(0.670588, 0.894118, 1, 1)
 position = Vector2(132, 10.011)
 scale = Vector2(272, 22)
 texture = SubResource("CanvasTexture_djktg")

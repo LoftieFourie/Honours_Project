@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b68sr7av2rrka"]
+[gd_scene load_steps=22 format=3 uid="uid://b68sr7av2rrka"]
 
 [ext_resource type="Script" path="res://Intro.gd" id="1_dh76d"]
 [ext_resource type="Script" path="res://Label1.gd" id="2_ht3xe"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Label3.gd" id="4_uxode"]
 [ext_resource type="Script" path="res://Label4.gd" id="5_ui31c"]
 [ext_resource type="PackedScene" uid="uid://osne576drmo4" path="res://character.tscn" id="6_8hlv8"]
+[ext_resource type="Texture2D" uid="uid://3e2yklefo47s" path="res://circle.png" id="7_w7esg"]
 
 [sub_resource type="Animation" id="Animation_lqqb1"]
 resource_name = "playerSelect"
@@ -117,11 +118,11 @@ _data = {
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sotgb"]
-font_color = Color(0, 0, 0, 1)
+font_color = Color(0.843137, 0.94902, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_il16c"]
 font_size = 19
-font_color = Color(0.0823529, 0.678431, 0, 1)
+font_color = Color(0.0823529, 0.847059, 0, 1)
 
 [node name="Intro" type="Node"]
 script = ExtResource("1_dh76d")
@@ -132,13 +133,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.843137, 0.862745, 0.85098, 1)
+color = Color(0.168627, 0.196078, 0.27451, 1)
 
 [node name="Label1" type="Label" parent="."]
 offset_left = 256.0
 offset_top = 184.0
-offset_right = 270.0
+offset_right = 266.0
 offset_bottom = 210.0
+pivot_offset = Vector2(5, 13)
 text = "1"
 script = ExtResource("2_ht3xe")
 
@@ -152,6 +154,7 @@ offset_left = 384.0
 offset_top = 184.0
 offset_right = 394.0
 offset_bottom = 210.0
+pivot_offset = Vector2(5, 13)
 text = "2"
 script = ExtResource("3_m6log")
 
@@ -165,6 +168,7 @@ offset_left = 512.0
 offset_top = 184.0
 offset_right = 522.0
 offset_bottom = 210.0
+pivot_offset = Vector2(5, 13)
 text = "3"
 script = ExtResource("4_uxode")
 
@@ -174,10 +178,11 @@ libraries = {
 }
 
 [node name="Label4" type="Label" parent="."]
-offset_left = 680.0
+offset_left = 650.0
 offset_top = 184.0
-offset_right = 690.0
+offset_right = 660.0
 offset_bottom = 210.0
+pivot_offset = Vector2(5, 13)
 text = "4"
 script = ExtResource("5_ui31c")
 
@@ -208,23 +213,30 @@ text = "press esc to add new music"
 label_settings = SubResource("LabelSettings_8m82a")
 
 [node name="Instuctions" type="Label" parent="."]
-offset_left = 508.0
-offset_top = 322.0
-offset_right = 841.0
-offset_bottom = 400.0
-text = "Who will be playeing along?
-Just press your button, if your
+offset_left = 316.0
+offset_top = 354.0
+offset_right = 649.0
+offset_bottom = 432.0
+text = "Who will be playing along?
+Just press your button, when your
 number turns green then you are set to go!"
 label_settings = SubResource("LabelSettings_sotgb")
 horizontal_alignment = 2
 
 [node name="Start" type="Label" parent="."]
-offset_left = 279.0
-offset_top = 103.0
-offset_right = 676.0
-offset_bottom = 133.0
+offset_left = 254.0
+offset_top = 104.0
+offset_right = 655.0
+offset_bottom = 136.0
 text = "press the green button when you are ready"
 label_settings = SubResource("LabelSettings_il16c")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 619.0
+offset_top = 194.0
+offset_right = 1104.0
+offset_bottom = 632.0
+texture = ExtResource("7_w7esg")
+
 [node name="Character" parent="." instance=ExtResource("6_8hlv8")]
-position = Vector2(960, 400)
+position = Vector2(865, 408)

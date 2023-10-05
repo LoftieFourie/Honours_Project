@@ -5,8 +5,6 @@ var songContainer
 func _ready():
 	# Assign the label node to the variable
 	songContainer = $Label/songContainer
-
-	print("running")
 	loadAndDisplaySongNames()
 	
 func addMusic():
