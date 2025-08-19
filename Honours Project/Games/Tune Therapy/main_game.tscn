@@ -1,12 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmoxux1duowko"]
+[gd_scene load_steps=12 format=3 uid="uid://cmoxux1duowko"]
 
 [ext_resource type="Script" path="res://main_game.gd" id="1_5axm8"]
+[ext_resource type="PackedScene" uid="uid://c5johjcivhbhp" path="res://bar.tscn" id="2_cbv8u"]
+[ext_resource type="PackedScene" uid="uid://gsphgqww8yes" path="res://HUD.tscn" id="3_vqj68"]
+[ext_resource type="PackedScene" uid="uid://osne576drmo4" path="res://character.tscn" id="4_t4kjr"]
+[ext_resource type="Texture2D" uid="uid://3e2yklefo47s" path="res://circle.png" id="4_vqkdx"]
+
+[sub_resource type="Curve2D" id="Curve2D_ejyt5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 450, -2, 0, 0, 0, 0, 712, 0)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmniq"]
-size = Vector2(269, 48)
+size = Vector2(269, 82)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6e2it"]
+font_size = 24
+font_color = Color(0.843137, 0.94902, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8lxky"]
+font_size = 20
+font_color = Color(0.843137, 0.94902, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jsffk"]
+font_size = 20
+font_color = Color(0.843137, 0.94902, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ie435"]
+font_color = Color(0.843137, 0.94902, 1, 1)
 
 [node name="main_game" type="Node"]
 script = ExtResource("1_5axm8")
+bar_scene = ExtResource("2_cbv8u")
+
+[node name="barPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ejyt5")
+
+[node name="barPathFollow" type="PathFollow2D" parent="barPath"]
+position = Vector2(450, -2)
+rotates = false
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -14,25 +49,85 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.168627, 0.196078, 0.27451, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+clip_contents = true
 offset_left = 447.0
 offset_top = 1.0
 offset_right = 718.0
 offset_bottom = 648.0
-color = Color(0.745098, 0.384314, 0.513726, 1)
+color = Color(1, 0.32549, 0.286275, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Area2D"]
 offset_left = 446.0
-offset_top = 580.0
+offset_top = 545.0
 offset_right = 718.0
 offset_bottom = 628.0
-color = Color(0, 0, 0, 1)
+color = Color(0.282353, 0.145098, 0.141176, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(581, 604)
+position = Vector2(581, 587)
 shape = SubResource("RectangleShape2D_pmniq")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="spawnTimer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 849.0
+offset_top = 120.0
+offset_right = 955.0
+offset_bottom = 146.0
+text = "Current Song:"
+label_settings = SubResource("LabelSettings_6e2it")
+
+[node name="CurSong" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 37.0
+offset_right = 56.0
+offset_bottom = 65.0
+label_settings = SubResource("LabelSettings_8lxky")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 849.0
+offset_top = 192.0
+offset_right = 933.0
+offset_bottom = 218.0
+text = "Next Song:"
+label_settings = SubResource("LabelSettings_jsffk")
+
+[node name="NexSong" type="Label" parent="Label2"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 56.0
+offset_bottom = 47.0
+label_settings = SubResource("LabelSettings_ie435")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="MotivationalTimer1" type="Timer" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("3_vqj68")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 6.10352e-05
+offset_top = 246.0
+offset_right = 485.0
+offset_bottom = 684.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_vqkdx")
+
+[node name="Character" parent="." instance=ExtResource("4_t4kjr")]
+position = Vector2(217, 445)
+
+[node name="MotivationalTimer2" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="MotivationalTimer1" to="." method="_on_motivational_timer_1_timeout"]
+[connection signal="timer_timed_out" from="Character" to="." method="_on_character_timer_timed_out"]
+[connection signal="timeout" from="MotivationalTimer2" to="." method="_on_motivational_timer_2_timeout"]

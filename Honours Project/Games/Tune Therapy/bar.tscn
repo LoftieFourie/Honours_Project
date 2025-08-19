@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5johjcivhbhp"]
+
+[ext_resource type="Script" path="res://bar.gd" id="1_1vtvy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6di61"]
+size = Vector2(258.5, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_djktg"]
+
+[sub_resource type="Animation" id="Animation_jawd7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(272, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.611765, 0.0235294, 0.294118, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_10seb"]
+resource_name = "pop"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(272, 22), Vector2(400, 32.353)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.611765, 0.0235294, 0.294118, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ykxgm"]
+_data = {
+"RESET": SubResource("Animation_jawd7"),
+"pop": SubResource("Animation_10seb")
+}
+
+[node name="Bar" type="RigidBody2D"]
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_1vtvy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+modulate = Color(0.368627, 0.388235, 0.917647, 1)
+self_modulate = Color(0.317647, 0.415686, 1, 1)
+position = Vector2(132.5, 11)
+scale = Vector2(13.15, 1.15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(130.75, 11)
+shape = SubResource("RectangleShape2D_6di61")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.611765, 0.0235294, 0.294118, 1)
+position = Vector2(132, 10.011)
+scale = Vector2(272, 22)
+texture = SubResource("CanvasTexture_djktg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ykxgm")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

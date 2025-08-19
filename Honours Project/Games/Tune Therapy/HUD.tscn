@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://gsphgqww8yes"]
+
+[ext_resource type="Script" path="res://Label.gd" id="1_vn1jt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yvai3"]
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3hset"]
+resource_name = "breathing_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7v2yr"]
+_data = {
+"breathing_animation": SubResource("Animation_3hset")
+}
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.305882, 0.305882, 0.305882, 0.686275)
+offset_right = 1154.0
+offset_bottom = 652.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 217.0
+offset_top = 110.0
+offset_right = 924.0
+offset_bottom = 260.0
+text = "Press Space to Start and skip songs
+Press Space twice to go back"
+label_settings = SubResource("LabelSettings_yvai3")
+horizontal_alignment = 1
+script = ExtResource("1_vn1jt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+reset_on_save = false
+playback_default_blend_time = 2.0
+libraries = {
+"": SubResource("AnimationLibrary_7v2yr")
+}

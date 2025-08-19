@@ -1,0 +1,44 @@
+2023-10-09 11:41:22,295 - INFO - Script started.
+2023-10-09 11:41:31,903 - INFO - Counter: 1
+2023-10-09 11:41:31,903 - INFO - Number of timestamps: 176
+2023-10-09 11:41:31,903 - INFO - Drum frequency range: [1500, 5000]
+2023-10-09 11:41:32,446 - INFO - Counter: 1
+2023-10-09 11:41:32,447 - INFO - Number of timestamps: 12
+2023-10-09 11:41:32,447 - INFO - Drum frequency range: [1500, 5500]
+2023-10-09 11:41:32,797 - INFO - Counter: 2
+2023-10-09 11:41:32,797 - INFO - Number of timestamps: 12
+2023-10-09 11:41:32,797 - INFO - Drum frequency range: [1500, 6000]
+2023-10-09 11:41:33,175 - INFO - Counter: 3
+2023-10-09 11:41:33,176 - INFO - Number of timestamps: 12
+2023-10-09 11:41:33,176 - INFO - Drum frequency range: [1500, 6500]
+2023-10-09 11:41:33,534 - INFO - Counter: 4
+2023-10-09 11:41:33,534 - INFO - Number of timestamps: 12
+2023-10-09 11:41:33,534 - INFO - Drum frequency range: [1500, 7000]
+2023-10-09 11:41:33,901 - INFO - Counter: 5
+2023-10-09 11:41:33,902 - INFO - Number of timestamps: 12
+2023-10-09 11:41:33,902 - INFO - Drum frequency range: [1500, 7500]
+2023-10-09 11:41:34,276 - INFO - Counter: 6
+2023-10-09 11:41:34,276 - INFO - Number of timestamps: 12
+2023-10-09 11:41:34,277 - INFO - Drum frequency range: [1500, 8000]
+2023-10-09 11:41:41,591 - INFO - Counter: 1
+2023-10-09 11:41:41,591 - INFO - Number of timestamps: 396
+2023-10-09 11:41:41,591 - INFO - Drum frequency range: [2000, 5000]
+2023-10-09 11:41:46,215 - INFO - Counter: 2
+2023-10-09 11:41:46,215 - INFO - Number of timestamps: 354
+2023-10-09 11:41:46,215 - INFO - Drum frequency range: [2500, 5000]
+2023-10-09 11:41:50,880 - INFO - Counter: 3
+2023-10-09 11:41:50,880 - INFO - Number of timestamps: 366
+2023-10-09 11:41:50,880 - INFO - Drum frequency range: [3000, 5000]
+2023-10-09 11:41:55,565 - INFO - Counter: 4
+2023-10-09 11:41:55,565 - INFO - Number of timestamps: 321
+2023-10-09 11:41:55,565 - INFO - Drum frequency range: [3500, 5000]
+2023-10-09 11:42:00,092 - INFO - Counter: 5
+2023-10-09 11:42:00,092 - INFO - Number of timestamps: 100
+2023-10-09 11:42:00,092 - INFO - Drum frequency range: [3500, 5500]
+2023-10-09 11:42:04,462 - INFO - Counter: 6
+2023-10-09 11:42:04,463 - INFO - Number of timestamps: 62
+2023-10-09 11:42:04,463 - INFO - Drum frequency range: [3500, 6000]
+2023-10-09 11:42:18,637 - INFO - Counter: 1
+2023-10-09 11:42:18,637 - INFO - Number of timestamps: 152
+2023-10-09 11:42:18,638 - INFO - Drum frequency range: [1500, 5000]
+2023-10-09 11:42:18,647 - INFO - Script finished.

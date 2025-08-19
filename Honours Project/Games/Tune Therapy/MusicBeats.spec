@@ -5,12 +5,12 @@ block_cipher = None
 
 
 a = Analysis(
-    ['test\\test2\\MusicBeats.py'],
+    ['MusicBeats.py'],
     pathex=[],
     binaries=[],
-    datas=[('librosa', 'librosa')],
+    datas=[],
     hiddenimports=[],
-    hookspath=[],
+    hookspath=['extra-hooks'],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],

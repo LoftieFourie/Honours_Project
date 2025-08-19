@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs1tr6vkqw2xh"]
+[gd_scene load_steps=3 format=3 uid="uid://cs1tr6vkqw2xh"]
 
 [ext_resource type="Script" path="res://upload_music.gd" id="1_3uuto"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lxpk3"]
+font_size = 17
 
 [node name="UploadMusic" type="Node"]
 script = ExtResource("1_3uuto")
@@ -20,6 +23,30 @@ offset_bottom = 70.0
 text = "Add new music"
 
 [node name="FileDialog" type="FileDialog" parent="Button"]
+title = "Open a File"
 position = Vector2i(200, 100)
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 0
+access = 2
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 491.0
+offset_top = 42.0
+offset_right = 743.0
+offset_bottom = 65.0
+text = "Current songs in playlist"
+label_settings = SubResource("LabelSettings_lxpk3")
+
+[node name="songContainer" type="VBoxContainer" parent="Label"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 27.0
+offset_right = 201.0
+offset_bottom = 307.0
 
 [connection signal="pressed" from="Button" to="." method="addMusic"]
+[connection signal="dir_selected" from="Button/FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="file_selected" from="Button/FileDialog" to="." method="_on_file_dialog_file_selected"]
